@@ -35,13 +35,25 @@ int ClearBitRange(int num, int start, int end)
 }
 
 int RotateLeft(int num, int d)
-{
-	return 0;
+{ // If integers were 8 bits, then RotateLeft(182, 3) would break up 182 into 101 10110
+  // and then move the 101 to the right of 10110 to get 10110101
+	unsigned int leftMask = 0xffffffff << (32 - d),
+	rightMask = 0xffffffff >> d;
+	printf("%d , %d\n", leftMask, rightMask);
+	unsigned int left = num & leftMask, right = num & rightMask;
+	// We now have the integer in 2 parts. We will now swap the parts
+	printf("%d , %d\n", left, right);
+	left >>= 32 - d;
+	right <<= d;
+	return left | right;
 }
 
 int SwapOddEvenBits(int num)
-{
-	return 0;
+{	// The LSB is an even bit, the bit in position 1 is odd, and so on...
+	unsigned int evenBits = num & 0x55555555, oddBits = num & 0xAAAAAAAA;
+	// Now that we have the even and odd bits in 2 separate variables,
+	// we can shift them past each other and then join them
+	return (evenBits << 1) | (oddBits >> 1);
 }
 
 /**
@@ -57,16 +69,24 @@ int main(int argc, char* argv[]){
 	(void)argv;
 	/** CREATE TEST CASES HERE **/
 
-	// printf("ToggleBit(16, 2) should return 20. Result: %d\n", ToggleBit(16, 2));
-	// printf("ToggleBit(40, 4) should return 56. Result: %d\n", ToggleBit(40, 4));
-	// printf("ToggleBit(5, 2) should return 1. Result: %d\n", ToggleBit(5, 2));
-	// printf("GetMSB(297) should return 8. Result: %d\n", GetMSB(297));
-	// printf("GetMSB(1) should return 0. Result: %d\n", GetMSB(1));
-	// printf("GetMSB(0) should return -1. Result: %d\n", GetMSB(0));
-	// printf("ClearBitRange(46, 0, 2) should return 40. Result: %d\n", ClearBitRange(46, 0, 2));
-	// printf("ClearBitRange(1073741823, 5, 10) should return 1073739807. Result: %d\n", ClearBitRange(1073741823, 5, 10));
-	// printf("ClearBitRange(250, 0, 5) should return 192. Result: %d\n", ClearBitRange(250, 0, 5));
-	
+	/*
+	printf("ToggleBit(16, 2) should return 20. Result: %d\n", ToggleBit(16, 2));
+	printf("ToggleBit(40, 4) should return 56. Result: %d\n", ToggleBit(40, 4));
+	printf("ToggleBit(5, 2) should return 1. Result: %d\n", ToggleBit(5, 2));
+	printf("GetMSB(297) should return 8. Result: %d\n", GetMSB(297));
+	printf("GetMSB(1) should return 0. Result: %d\n", GetMSB(1));
+	printf("GetMSB(0) should return -1. Result: %d\n", GetMSB(0));
+	printf("ClearBitRange(46, 0, 2) should return 40. Result: %d\n", ClearBitRange(46, 0, 2));
+	printf("ClearBitRange(1073741823, 5, 10) should return 1073739807. Result: %d\n", ClearBitRange(1073741823, 5, 10));
+	printf("ClearBitRange(250, 0, 5) should return 192. Result: %d\n", ClearBitRange(250, 0, 5));
+	printf("RotateLeft(2863311530, 1) should return 1431655765. Result: %d\n", RotateLeft(2863311530, 1));
+	printf("RotateLeft(0xffff0000, 4) should return -1048561. Result: %d\n", RotateLeft(0xffff0000, 4));
+	printf("RotateLeft(5, 3) should return 40. Result: %d\n", RotateLeft(5, 3));
+	printf("SwapOddEvenBits(0b101100110) should return 1010011001 (665). Result: %d\n", SwapOddEvenBits(0b101100110));
+	printf("SwapOddEvenBits(45) should return 011110 (30). Result: %d\n", SwapOddEvenBits(45));
+	printf("SwapOddEvenBits(5) should return 10. Result: %d\n", SwapOddEvenBits(5));
+	*/
+
 	/** ---------------------- **/
 	return 0;
 }
