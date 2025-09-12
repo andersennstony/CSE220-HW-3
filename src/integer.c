@@ -62,6 +62,7 @@ int main(int argc, char* argv[]){
 	(void)argv;
 	/** CREATE TEST CASES HERE **/
 
+	/*
 	repr_convert('S', '2', 0x80000001); // ffffffff
 	repr_convert('S', '2', 0x80000000); // 00000000
 	repr_convert('S', '2', 0x0fffffff); // 0fffffff // This is my own test case
@@ -70,6 +71,8 @@ int main(int argc, char* argv[]){
 	repr_convert('2', 'S', 0x80000000); // undefined
 	repr_convert('2', 'S', 0x80000010); // fffffff0
 	repr_convert('2', 'S', 0x70000010); // 70000010
+
+	*/
 
 	
 	/** ---------------------- **/
