@@ -7,17 +7,31 @@
 int ToggleBit(int num, int pos)
 {
 	// Students should implement here!
-	return 0; 
+	int x = 1 << pos; // 1 in the position of the bit we want to toggle
+	if (num & x) // The current bit is a 1
+		num &= ~x;
+	else // The current bit is 0
+		num |= x;
+	return num;
 }
 
 int GetMSB(int num)
-{
-	return 0;
+{ // We will start from the leftmost position (31) and go to position 0
+	int mask;
+	for (int pos = 31; pos >= 0; pos --){
+		mask = 1 << pos;
+		if (num & mask)
+			return pos;
+	}
+	return -1;
 }
 
 int ClearBitRange(int num, int start, int end)
-{
-	return 0;
+{ 	int range = end - start + 1; // There are (end - start + 1) bits to be cleared
+	unsigned int mask = 0xffffffff; // Create a mask where every bit is 1. We will shift them out to the right
+	mask >>= (32 - range); // Shifts the necessary 1 bits all the way on the right
+	mask <<= start; // The 1 bits are now in the correct position
+	return num & ~mask; // We just need to negate the mask
 }
 
 int RotateLeft(int num, int d)
@@ -43,8 +57,15 @@ int main(int argc, char* argv[]){
 	(void)argv;
 	/** CREATE TEST CASES HERE **/
 
-
-
+	// printf("ToggleBit(16, 2) should return 20. Result: %d\n", ToggleBit(16, 2));
+	// printf("ToggleBit(40, 4) should return 56. Result: %d\n", ToggleBit(40, 4));
+	// printf("ToggleBit(5, 2) should return 1. Result: %d\n", ToggleBit(5, 2));
+	// printf("GetMSB(297) should return 8. Result: %d\n", GetMSB(297));
+	// printf("GetMSB(1) should return 0. Result: %d\n", GetMSB(1));
+	// printf("GetMSB(0) should return -1. Result: %d\n", GetMSB(0));
+	// printf("ClearBitRange(46, 0, 2) should return 40. Result: %d\n", ClearBitRange(46, 0, 2));
+	// printf("ClearBitRange(1073741823, 5, 10) should return 1073739807. Result: %d\n", ClearBitRange(1073741823, 5, 10));
+	// printf("ClearBitRange(250, 0, 5) should return 192. Result: %d\n", ClearBitRange(250, 0, 5));
 	
 	/** ---------------------- **/
 	return 0;
