@@ -12,7 +12,7 @@ float construct_float_sf(char sign_bit, unsigned char exponent, unsigned int fra
     f <<= 8;
     f |= exponent;
     f <<= 23;
-    f |= fraction;
+    f |= (fraction & 0x007fffff); // We only want the first 23 digits (from right to left)
 
     /* DO NOT CHANGE THE RETURN VALUE (This returns the binary representation of "f" as float) */
     return *((float*)&f); // DO NOT CHANGE
