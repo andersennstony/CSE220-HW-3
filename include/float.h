@@ -13,6 +13,6 @@
  * @param fraction The fraction field, or mantissa, zero-extended to 32-bit representation. 
  * @returns the binary representation of f as a float
  */
-float construct_float_sf(char sign_bit, unsigned char exponent, unsigned int fraction);
+float construct_float_sf(char sign_bit, char exponent, unsigned int fraction);
 
 #endif

@@ -39,10 +39,8 @@ int RotateLeft(int num, int d)
   // and then move the 101 to the right of 10110 to get 10110101
 	unsigned int leftMask = 0xffffffff << (32 - d),
 	rightMask = 0xffffffff >> d;
-	printf("%d , %d\n", leftMask, rightMask);
 	unsigned int left = num & leftMask, right = num & rightMask;
 	// We now have the integer in 2 parts. We will now swap the parts
-	printf("%d , %d\n", left, right);
 	left >>= 32 - d;
 	right <<= d;
 	return left | right;
@@ -84,9 +82,7 @@ int main(int argc, char* argv[]){
 	printf("RotateLeft(5, 3) should return 40. Result: %d\n", RotateLeft(5, 3));
 	printf("SwapOddEvenBits(0b101100110) should return 1010011001 (665). Result: %d\n", SwapOddEvenBits(0b101100110));
 	printf("SwapOddEvenBits(45) should return 011110 (30). Result: %d\n", SwapOddEvenBits(45));
-	printf("SwapOddEvenBits(5) should return 10. Result: %d\n", SwapOddEvenBits(5));
-	*/
-
-	/** ---------------------- **/
+	printf("SwapOddEvenBits(5) should return 10. Result: %d\n", SwapOddEvenBits(5)); */
+	
 	return 0;
 }

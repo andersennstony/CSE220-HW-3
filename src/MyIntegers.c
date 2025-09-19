@@ -65,16 +65,17 @@ int main(int argc, char* argv[]){
 	/*
 	repr_convert('S', '2', 0x80000001); // ffffffff
 	repr_convert('S', '2', 0x80000000); // 00000000
-	repr_convert('S', '2', 0x0fffffff); // 0fffffff // This is my own test case
 	repr_convert('2', '2', 0x59f2ca50); // 59f2ca50
-	repr_convert('2', '2', 0x00394812); // error
+	repr_convert('F', '2', 0x00394812); // error
 	repr_convert('2', 'S', 0x80000000); // undefined
 	repr_convert('2', 'S', 0x80000010); // fffffff0
 	repr_convert('2', 'S', 0x70000010); // 70000010
 
-	*/
+	// My test cases
+	repr_convert('S', '2', 0x7fffffff); // 0x7fffffff
+	repr_convert('S', '2', 0xffffffff); // 0x80000001
+	repr_convert('S', '2', 0x0fffffff); // 0fffffff */
 
-	
-	/** ---------------------- **/
+
 	return 0;
 }
